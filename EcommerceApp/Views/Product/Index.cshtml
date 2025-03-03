@@ -1,0 +1,43 @@
+﻿@model List<EcommerceApp.Models.Product> 
+@* This line specifies that the view expects a list of Product objects (List<Product>) from the EcommerceApp.Models namespace.
+The Model keyword in the view will refer to this list. *@ 
+
+
+@{
+    ViewData["Title"] = "Product List";
+}
+
+@*This sets the Title in ViewData, which can be used in the layout file (_Layout.cshtml) to display the page title dynamically.*@
+
+<h2>Product List</h2>
+@*The "Add Product" button: 
+ Uses asp-action="Create", which means clicking the button redirects the user to the Create action in the corresponding controller.
+ Styled using Bootstrap (btn btn-primary).*@
+<a asp-action="Create" class="btn btn-primary">Add Product</a>
+
+<table class="table mt-3">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var product in Model)
+        {
+            <tr>
+                <td>@product.Id</td>
+                <td>@product.Name</td>
+                <td>$@product.Price</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@product.Id"
+                       class="btn btn-warning">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@product.Id"
+                       class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table> 

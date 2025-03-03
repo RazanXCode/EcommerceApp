@@ -1,0 +1,34 @@
+﻿@* This line specifies that the view is strongly typed to the Product model. *@
+@* The Model object will contain an instance of Product, which will be bound to the form inputs. *@
+@model EcommerceApp.Models.Product
+
+@{
+    ViewData["Title"] = "Add Product";
+}
+
+<h2>Add Product</h2>
+@* This form uses the Tag Helper asp-action="Create", which: 
+ Submits form data to the Create action in the controller (ProductController).
+ Uses the POST method by default. *@
+
+
+@* <label> → Displays the field name ("Name:"). *@
+@*     <input asp-for="Name" class="form-control" /> *@
+@*     Automatically binds the input to the Name property of the Product model. *@
+@*     <span asp-validation-for="Name" class="text-danger"></span> *@
+@*     Displays validation errors for the Name field. *@
+@*     text-danger applies red text color for error messages. *@
+<form asp-action="Create">
+    <div class="form-group">
+        <label>Name:</label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label>Price:</label>
+        <input asp-for="Price" class="form-control" />
+        <span asp-validation-for="Price" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-success mt-2">Save</button>
+</form>
+
